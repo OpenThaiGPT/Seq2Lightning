@@ -1,0 +1,9 @@
+PROJECT_LANGS:
+  - 'en'
+  - 'es'
+  - 'fr'
+
+LANG_ARCHIVES:
+  en: 'leipzig/eng-com_web-public_2018_1M.tar.gz'
+  es: 'leipzig/spa_newscrawl_2018_1M.tar.gz'
+  fr: 'leipzig/fra_wikipedia_2021_1M.tar.gz'
