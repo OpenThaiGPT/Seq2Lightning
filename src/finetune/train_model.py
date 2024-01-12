@@ -40,6 +40,7 @@ def run_training_seq2seq(
                 wandb_project: Optional[str] = None,
                 wandb_name: Optional[str] = None,
                 random_seed: int = 42,
+                num_nodes: int = 1,
     ) -> None:
     """
     Run training/finetuning transformers model on Seq2Seq tasks
@@ -94,7 +95,8 @@ def run_training_seq2seq(
                          accumulate_grad_batches=accumulate_grad_batches,
                          precision=precision,
                          logger=wandb_logger if wandb_logger is not None else True,
-                         callbacks=callbacks
+                         callbacks=callbacks,
+                         num_nodes=num_nodes,
                          )
     if wandb_logger is not None:
         wandb_logger.watch(model, log="gradients")
@@ -165,5 +167,6 @@ if __name__ == '__main__':
                                                                         "will belong")
     parser.add_argument("--wandb_name", type=str, default=None, help="Name for the W&B run")
     parser.add_argument("--random_seed", type=int, default=42, help="Seed to initialize the pseudorandom number generator")
+    parser.add_argument("--num_nodes", type=int, default=1, help="The number of nodes to compute")
     args = parser.parse_args()
     run_training_seq2seq(**vars(args))
